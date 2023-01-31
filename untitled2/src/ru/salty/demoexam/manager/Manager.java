@@ -99,7 +99,7 @@ public class Manager {
 
         try (Connection c = Main.getConnection()) {
 
-            String sql = "UPDATE client SET LastName = ?, FirstName = ?, Patronymic = ?, Birthday = ?, RegistrationDate = ?, Email = ?, Phone = ?, GenderCode = ?";
+            String sql = "UPDATE client SET LastName = ?, FirstName = ?, Patronymic = ?, Birthday = ?, RegistrationDate = ?, Email = ?, Phone = ?, GenderCode = ? WHERE id = ?";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, entity.getLastName());
             ps.setString(2, entity.getFirstName());
@@ -109,6 +109,7 @@ public class Manager {
             ps.setString(6, entity.getEmail());
             ps.setString(7, entity.getPhone());
             ps.setString(8, entity.getGenderCode());
+            ps.setInt(9, entity.getId());
 
             ps.executeUpdate();
 
